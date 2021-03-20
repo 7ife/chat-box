@@ -1,0 +1,1 @@
+  background: url(./images/bcknd/Mx2.gif) 0 0 repeat;

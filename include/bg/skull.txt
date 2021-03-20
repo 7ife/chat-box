@@ -1,0 +1,1 @@
+  background: url(./images/bcknd/skull.jpg) 0 0 repeat;
