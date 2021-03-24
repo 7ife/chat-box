@@ -9,7 +9,7 @@ This project is like a hobby for me. All knowledge from the Internet, do not jud
 - Beautiful adaptive design
 ---
 ### Installation Instructions:
-**ChatBox** can work on almost any hosting with php 5.5-7.3. It will immediately start working when you upload it to your hosting.
+**ChatBox** can work on almost any hosting with php 5.5+. It will immediately start working when you upload it to your hosting.
 #### You need to make changes, for chat management:
 For correct operation, scripts it must be located in the **chat-box** directory. <br>
 For the folder **admin_similar-to-password** leave **chmod 777**, for all others recommend **chmod 755** <br><br>
