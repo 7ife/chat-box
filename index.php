@@ -55,7 +55,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
   $noMessage = ( $message == '') ? true : false;
   $noCaptcha = ( $captcha == '' ) ? true : false;
   if ( $captcha != $cvalue ) $noCaptcha = true;
-  $missing = $noName || $noEmail || $noMessage || $noCaptcha;
+  $missing = $noMessage || $noCaptcha;
 }
 
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' && !$missing ) :
