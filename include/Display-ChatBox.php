@@ -196,7 +196,7 @@ try {
 	$ava = str_replace("Wonder Woman","images/ava/100--Wonder-Woman.png",$ava);
 // **************************************
 echo '<li class="chat-item chat-item--me">';
-echo '<img class="cb-border cb-border-grey chat-img" src="',$ava,'" width="42" alt="Avatar" />';
+echo '<img class="cb-border cb-border-grey chat-img" src="',$ava,'" alt="Avatar" />';
 echo '<div class="message">';
 echo '<span class="message__user-name">',$name,'</span> <span class="message__date">',$date,'</span> ';
 echo '<p class="message__text">',$message,' </p><span class="message__time">UTC <i class="glyphicon glyphicon-time"></i> ',$time,'</span>';
