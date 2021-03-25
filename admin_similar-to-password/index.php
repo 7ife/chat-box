@@ -49,7 +49,7 @@ try {
   $result = $db->query($query);
   foreach ( $result as $row ) {
 ?>
-<hr><center><table class="table" style="width:500px;border:none;">
+<hr><center><table class="table" style="width:88%;border:none;">
   <tr>
     <td width="120">Id:</td>
     <td><?php echo $row['id']; ?></td>
@@ -85,6 +85,7 @@ catch ( PDOException $e ) {
 $db = null;
 ?>
 <a href="#top" class="top btn btn-default tt-info hover-tt-right" data-hover="Back to top"><span class="glyphicon glyphicon-hand-up"></span></a>
+<br><br><br>
 </div>
 </body>
 </html>
