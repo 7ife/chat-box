@@ -189,7 +189,7 @@ endif;
     <div class="row">
         <div class="col-xs-12">
             <ul class="list-unstyled">
-              <li class="pull-right text-muted"><abbr title="Version 2.2">v2.2</abbr></li>
+              <li class="pull-right text-muted"><abbr title="Version 2.3">v2.3</abbr></li>
               <li><a target="_blank" href="https://github.com/7ife/chat-box" class="text-muted tt-default hover-tt-right" data-hover="Get ChatBox" style="color:#fffff;text-decoration:none;"><img alt="GitHub" height="22" width="22" src="github.svg"></a></li>
             </ul>		
 		</div>
