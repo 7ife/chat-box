@@ -1,3 +1,4 @@
+h1{font-size:4.6vw}
 input[type="text"],input[type="name"], textarea {color: #bfbfbf; background-color: #464b52;}
 textarea[type="text"] {color: #bfbfbf; background-color: #464b52;}
 [data-hover] {
