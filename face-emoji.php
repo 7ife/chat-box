@@ -1,4 +1,3 @@
-<?php header('Content-type=text/html; charset=utf_8'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
