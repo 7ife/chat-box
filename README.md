@@ -66,6 +66,20 @@ ibid in file **Display-ChatBox.php** line 160 Change the code to your own, for a
 	$message = str_replace("[I]","<i>",$message); $message = str_replace("[/I]","</i>",$message);
 
 ```
+**Starting with v2.4 Function Pagination has been added** ibid in file **Display-ChatBox.php** line 17 Change the code to your own, number of chat messages per page:
+```php
+
+	} else {
+		$pg = 1;
+        }
+
+	$limit = 5; // number of chat messages per page
+	$starting_limit = ($pg-1) * $limit;
+	$previous_page = $pg - 1;
+	$next_page = $pg + 1;
+	$adjacents = "2"; 
+
+```
 That's it, your **ChatBox** is ready, upload to your hosting.
 
 ---
