@@ -27,20 +27,20 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' && !$missing ) :
     $datetime  = date('Y-m-d h:i:s');
 
 ```
-in **Display-ChatBox.php**: line 7
+in **Display-ChatBox.php**: line 6
 ```php
 
+<ul>	
+<?php
 // Display ChatBox entries
 try {
   // Open db connection / create db and table if first time here
   $db = new PDO('sqlite:admin_similar-to-password/ChatBox.sqlite');
 // *************************************
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $db->exec('CREATE TABLE IF NOT EXISTS ChatBox (id INTEGER PRIMARY KEY, name TEXT, ava TEXT, message TEXT, datetime TEXT, time TEXT, approved INTEGER);');
-  $query = 'SELECT * FROM ChatBox WHERE approved=1 ORDER BY id DESC;';
 
 ```
-Do not close the file **Display-ChatBox.php**, edit the line 162 with the password for Admin:
+Do not close the file **Display-ChatBox.php**, edit the line 182 with the password for Admin:
 ```php
 
 // Come up with a password(up to 18 characters) that is difficult to pick up; you will respond as an administrator by entering this password instead of your nickname		
@@ -53,7 +53,7 @@ Do not close the file **Display-ChatBox.php**, edit the line 162 with the passwo
 //	$name = str_replace("pass-for-Queen","<span style=\"color:#870044;\">Chess Queen <span class=\"glyphicon glyphicon-queen\"></span></span>",$name);
 
 ```
-ibid in file **Display-ChatBox.php** line 140 Change the code to your own, for an interesting gif image:
+ibid in file **Display-ChatBox.php** line 160 Change the code to your own, for an interesting gif image:
 ```php
 
 // ************* good site *************
