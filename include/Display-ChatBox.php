@@ -1,5 +1,4 @@
 <ul>	
-
 <?php
 // Display ChatBox entries
 try {
@@ -8,10 +7,31 @@ try {
 // *************************************
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $db->exec('CREATE TABLE IF NOT EXISTS ChatBox (id INTEGER PRIMARY KEY, name TEXT, ava TEXT, message TEXT, datetime TEXT, time TEXT, approved INTEGER);');
-  $query = 'SELECT * FROM ChatBox WHERE approved=1 ORDER BY id DESC;';
-  $result = $db->query($query);
-  foreach ( $result as $row ) {
-    $message = $row['message'];
+
+if (isset($_GET['pg']) && $_GET['pg']!="") {
+	$pg = $_GET['pg'];
+	} else {
+		$pg = 1;
+        }
+
+	$limit = 5; // number of chat messages per page
+	$starting_limit = ($pg-1) * $limit;
+	$previous_page = $pg - 1;
+	$next_page = $pg + 1;
+	$adjacents = "2"; 
+
+	$query = "SELECT count(*) FROM ChatBox";
+	$s = $db->query($query);
+
+	$total_results = $s->fetchColumn();
+	$total_pages = ceil($total_results/$limit);
+	$second_last = $total_pages - 1; // total page minus 1
+
+	$show  = "SELECT * FROM ChatBox WHERE approved=1 ORDER BY id DESC LIMIT ?,?";
+	$r = $db->prepare($show);
+	$r->execute([$starting_limit, $limit]);
+	while($res = $r->fetch(PDO::FETCH_ASSOC)) {
+    $message = $res['message'];
 // ************* Neko Atsume ***********
 	$message = str_replace("::naback::"," <img src=\"./images/emoji/na/NABack.png\" height=\"26\"> ",$message);
 	$message = str_replace("::nabag::"," <img src=\"./images/emoji/na/NABag.png\" height=\"26\"> ",$message);
@@ -154,7 +174,7 @@ try {
 	$message = str_replace("[ctPi]","<span class=\"iNpink\">",$message); $message = str_replace("[/ctPi]","</span>",$message);
 
 // **************************************
-	$name = $row['name'];
+	$name = $res['name'];
 	if($name == "")     { // If there is no name
 	$name = "Anonymous"; // Set the name to Anonymous
 }
@@ -167,9 +187,9 @@ try {
 // Uncomment the line and you will have the user Chess Queen		
 //	$name = str_replace("pass-for-Queen","<span style=\"color:#870044;\">Chess Queen <span class=\"glyphicon glyphicon-queen\"></span></span>",$name);
 // **************************************
-    $date = strtok($row['datetime'], ' ');
-	$time = $row['time'];
-	$ava = $row['ava'];
+    $date = strtok($res['datetime'], ' ');
+	$time = $res['time'];
+	$ava = $res['ava'];
 // **************** avatar **************	
 	$ava = str_replace("Choose a hero on avatar","images/ava/anonymous.png",$ava);
 	$ava = str_replace("Aquaman","images/ava/100--Aquaman.png",$ava);
@@ -212,5 +232,81 @@ catch ( PDOException $e ) {
 // Close the database
 $db = null;
 ?>			 
-
 </ul>
+
+<div style='padding: 10px 20px 0px; border-top: dotted 1px #CCC;'>
+<strong>Page <?php echo $pg." of ".$total_pages; ?></strong>
+</div>
+
+<ul class="pagination">
+	<?php // if($pg > 1){ echo "<li><a href='?pg=1'>First Page</a></li>"; } ?>
+    
+	<li <?php if($pg <= 1){ echo "class='disabled'"; } ?>>
+	<a <?php if($pg > 1){ echo "href='?pg=$previous_page'"; } ?>>Previous</a>
+	</li>
+       
+    <?php //if you uncomment on the code below, you will get the page numbers, demo original: allphptricks.com/demo/2018/july/create-simple-pagination/
+	// if ($total_pages <= 10){  	 
+		// for ($page = 1; $page <= $total_pages; $page++){
+			// if ($page == $pg) {
+		   // echo "<li class='active'><a>$page</a></li>";	
+				// }else{
+           // echo "<li><a href='?pg=$page'>$page</a></li>";
+				// }
+        // }
+	// }
+	// elseif($total_pages > 10){
+		
+	// if($pg <= 4) {			
+	 // for ($page = 1; $page < 8; $page++){		 
+			// if ($page == $pg) {
+		   // echo "<li class='active'><a>$page</a></li>";	
+				// }else{
+           // echo "<li><a href='?pg=$page'>$page</a></li>";
+				// }
+        // }
+		// echo "<li><a>...</a></li>";
+		// echo "<li><a href='?pg=$second_last'>$second_last</a></li>";
+		// echo "<li><a href='?pg=$total_pages'>$total_pages</a></li>";
+		// }
+
+	 // elseif($pg > 4 && $pg < $total_pages - 4) {		 
+		// echo "<li><a href='?pg=1'>1</a></li>";
+		// echo "<li><a href='?pg=2'>2</a></li>";
+        // echo "<li><a>...</a></li>";
+        // for ($page = $pg - $adjacents; $page <= $pg + $adjacents; $page++) {			
+           // if ($page == $pg) {
+		   // echo "<li class='active'><a>$page</a></li>";	
+				// }else{
+           // echo "<li><a href='?pg=$page'>$page</a></li>";
+				// }                  
+       // }
+       // echo "<li><a>...</a></li>";
+	   // echo "<li><a href='?pg=$second_last'>$second_last</a></li>";
+	   // echo "<li><a href='?pg=$total_pages'>$total_pages</a></li>";      
+            // }
+		
+		// else {
+        // echo "<li><a href='?pg=1'>1</a></li>";
+		// echo "<li><a href='?pg=2'>2</a></li>";
+        // echo "<li><a>...</a></li>";
+
+        // for ($page = $total_pages - 6; $page <= $total_pages; $page++) {
+          // if ($page == $pg) {
+		   // echo "<li class='active'><a>$page</a></li>";	
+				// }else{
+           // echo "<li><a href='?pg=$page'>$page</a></li>";
+				// }                   
+                // }
+            // }
+	// }
+	?>
+    
+	<li <?php if($pg >= $total_pages){ echo "class='disabled'"; } ?>>
+	<a <?php if($pg < $total_pages) { echo "href='?pg=$next_page'"; } ?>>Next</a>
+	</li>
+    <?php if($pg < $total_pages){
+		echo "<li><a href='?pg=$total_pages'>Last &rsaquo;&rsaquo;</a></li>";
+		} ?>
+</ul>
+<!--  -->
