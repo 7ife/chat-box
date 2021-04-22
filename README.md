@@ -66,7 +66,8 @@ ibid in file **Display-ChatBox.php** line 160 Change the code to your own, for a
 	$message = str_replace("[I]","<i>",$message); $message = str_replace("[/I]","</i>",$message);
 
 ```
-**Starting with v2.4 Function Pagination has been added** ibid in file **Display-ChatBox.php** line 17 Change the code to your own, number of chat messages per page:
+**Starting with v2.4 Function Pagination has been added**  <br>
+ibid in file **Display-ChatBox.php** line 17 Change the code to your own, number of chat messages per page:
 ```php
 
 	} else {
