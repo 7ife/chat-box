@@ -12,7 +12,7 @@ This project is like a hobby for me. All knowledge from the Internet, do not jud
 **ChatBox** can work on almost any hosting with php 5.5+. It will immediately start working when you upload it to your hosting.
 #### You need to make changes, for chat management:
 For correct operation, scripts it must be located in the **chat-box** directory. <br>
-For the folder (Starting with v2.4 all folder chmod755)**admin_similar-to-password** leave **chmod 777**, for all others recommend **chmod 755** <br><br>
+For the folder **admin_similar-to-password** leave **chmod 777**, for all others recommend **chmod 755** (Starting with v2.4 all folder recommend chmod755) <br><br>
 Change the name of the folder **admin_similar-to-password** to you own, so that no one guesses, this will be your admin panel, for additional protection, you can use HTTP Basic Authentication, also change the name in the files: `index.php`, `/include/Display-ChatBox.php` <br><br>
 in **index.php**: line 62
 ```php
